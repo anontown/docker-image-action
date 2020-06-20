@@ -53,21 +53,13 @@ async function main() {
     const version = versionBase + versionSuffix;
     const imageTag = `${imageRepo}/${imageName}:${version}`;
 
-    await exec.exec(`docker build -t ${imageTag} .`, undefined, {
-      failOnStdErr: true,
-    });
+    await exec.exec(`docker build -t ${imageTag} .`);
 
     await exec.exec(
-      `docker login docker.pkg.github.com -u ${actor} -p ${personalToken}`,
-      undefined,
-      {
-        failOnStdErr: true,
-      }
+      `docker login docker.pkg.github.com -u ${actor} -p ${personalToken}`
     );
 
-    await exec.exec(`docker push ${imageTag}`, undefined, {
-      failOnStdErr: true,
-    });
+    await exec.exec(`docker push ${imageTag}`);
 
     core.setOutput("image-tag", imageTag);
   } catch (error) {
