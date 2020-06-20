@@ -1,0 +1,15 @@
+name: Docker Image Action
+description: build and push docker image.
+inputs:
+  personal-token:
+    description: personal token
+    required: true
+  image-name:
+    description: image name
+    required: true
+outputs:
+  image-tag:
+    description: image tag
+runs:
+  using: node12
+  main: index.js
